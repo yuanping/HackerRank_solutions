@@ -13,10 +13,11 @@ def combinations(dollar, coins, size, cache)
   return 0 if dollar < 0
   return 0 if size <= 0 # no any coins
 
-  return cache[dollar] if cache[dollar] # already calculated
+  return cache["#{dollar}-#{size}"] if cache["#{dollar}-#{size}"] # already calculated
 
   res = combinations(dollar-coins[size-1], coins, size, cache) + combinations(dollar, coins, size-1, cache)
-  cache[dollar] = res
+  cache["#{dollar}-#{size}"] = res
+
   res
 end
 
